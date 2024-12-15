@@ -1,8 +1,13 @@
 # Color Swatch Akkio Takehome Assessment
 
 ## How to run this app
-- Ensure you have `npm` and `node` installed on your computer.
-- 
+- Ensure you have `node` installed on your computer
+    - This should come with `npm` installed as well, check by doing `npm -v` once `node` has been installed
+- Clone this repository
+    - `git clone ... .`
+- Open cloned repo on your favorite IDE
+- Run `npm i` in the root of your repo
+- Once installation is complete, run `npm run start` which should take you to `localhost:3000` where you can start interacting with the app
 
 ## Considerations:
 
@@ -42,3 +47,6 @@
     - If this project were to be productionized, we can host it as a simple page (if static).
     - If we were to consider it as a web app, we can utilize something like Google's Firebase to host, authenticate, store data via Firestore, etc.
     - If tests exist, we can set up CI pipelines (e.g GitHub Actions) to run tests on each pull request and deployments to various environments (sandbox(where devs can test), qa, staging(pre-prod), and production).
+- Code Refactor/Improvements
+    - The cache is currently in-memory, meaning with a refresh/server restart, we lose the previous cache values. An improvement can be made here by moving the cache logic to Local Storage and/or the Cache API (Service Workers).
+    - Currently, there's only one file in the Components/ directory. This can be further broken down to individual components (e.g header/color inputs/color swatch box).
