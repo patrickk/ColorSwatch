@@ -1,5 +1,11 @@
 # Color Swatch Akkio Takehome Assessment
 
+## Summary/Design Choices
+- I originally considered going with vanilla JS or using TypeScript at a minimum, I went with using React since I'm comfortable working with it and the assessment could be done faster. 
+- I broke out several folders for the components, hooks, types, services(API caller), and styles. This is to keep the codebase organized and easier to maintain.
+- I decided to include the hex, RGB, and HSL values for each color swatch box since it makes it easier to distinguish between colors that may have the same name.
+- For CSS, I used a mix of flexbox(for inputs) and grid(color boxes). This is to ensure that the layout is responsive and looks good on different screen sizes.
+
 ## How to run this app
 - Ensure you have `node` installed on your computer
     - This should come with `npm` installed as well, check by doing `npm -v` once `node` has been installed
@@ -38,6 +44,15 @@
     - If there are errors, we would surface an error message to the user which is also captured thorugh a `useState` hook.
     - (Bonus) We could also keep the last successful result in case of an error and use that as a fallback.
 
+
+## Bonus Question
+- Is there a way to get all the named colors without making 360 calls for each S,L pair?
+    - Yes, we can reduce the number of API calls. We assume that once a color name changes, the previous name does not appear (e.g red ... blue ... red cannot appear again). There doesn't seem to be a pattern of colors repeating in the sense that a change in `n` hue degree results in a different color name.
+    - We need to find the transition point, which is when the change in hue results in a different color name. 
+        - This can naively be done by fetching the first color name, then incrementing the hue by 1 degree until the color name changes. However, this would still result in 360 calls.
+        - Instead, we can use something like binary search to narrow in on the transition point.
+        - We can assume something like 15, 30, 45 degree increments to start with and then narrow down from there.
+            - When a color name change is detected between two hues, we can use binary search to find the exact hue where the name changes.
 
 ## Potential Considerations/Improvements
 - Accessibility
