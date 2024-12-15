@@ -11,7 +11,7 @@
 
 ## Considerations:
 
-- How efficiently can the distinct names be determined? 
+- How efficiently can the distinct names be determined?
     - Color names may be the same, even if their hex/RGB/HSL values differ slightly (e.g Chestnut Rose, I saw 6 instances). To mitigate this, we can use an object/Map to cache these values based on a combination of Saturation and Lightness values.
     - The cache allows for conditionally fetching data, so if these values already exist in the cache, we won't have to fetch again.
 
@@ -41,12 +41,17 @@
 
 ## Potential Considerations/Improvements
 - Accessibility
+
     - For lighter colors, it's really tough to see with a white background given the color box's opacity (lightness).
         - Could look into providing tooltips and/or utilizing a different text color(e.g black) so that it shows up with a white background
+
 - CI/CD
+
     - If this project were to be productionized, we can host it as a simple page (if static).
     - If we were to consider it as a web app, we can utilize something like Google's Firebase to host, authenticate, store data via Firestore, etc.
     - If tests exist, we can set up CI pipelines (e.g GitHub Actions) to run tests on each pull request and deployments to various environments (sandbox(where devs can test), qa, staging(pre-prod), and production).
+
 - Code Refactor/Improvements
+
     - The cache is currently in-memory, meaning with a refresh/server restart, we lose the previous cache values. An improvement can be made here by moving the cache logic to Local Storage and/or the Cache API (Service Workers).
     - Currently, there's only one file in the Components/ directory. This can be further broken down to individual components (e.g header/color inputs/color swatch box).
